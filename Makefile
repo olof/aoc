@@ -5,6 +5,7 @@ year = $(shell date +%Y)
 targets = $(sort $(notdir $(patsubst %/,%,$(dir \
     $(wildcard $(year)/dec*/input) \
   ))))
+problem = all
 timecmd-y = time
 timesh- = /bin/sh
 timesh-y = /bin/bash
@@ -19,6 +20,7 @@ dec%:
 	@make -s -f $(framework) -C $(year)/$@ \
 		timecmd=$(timecmd-$(time)) \
 		sh=$(timesh-$(time)) \
-		day=$@
+		day=$@ \
+		$(problem)
 
 .PHONY: all today dec%
