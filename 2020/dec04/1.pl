@@ -3,6 +3,9 @@ use 5.020;
 my @mand = qw(byr iyr eyr hgt hcl ecl pid);
 sub valid {
 	my %args = %{shift()};
+	#>>> use List::Util qw(all);
+	#>>> all { exists $args{$_} } @mand;
+	#but it takes longer, including the import!
 	for (@mand) {
 		return if not exists $args{$_};
 	}
