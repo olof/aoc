@@ -27,6 +27,6 @@ When running timing measurements, we run the solutions many times
 This will get rid of some noise from the timings, but it does
 still include some overhead from things like forking processes.
 And by default, the output is "real" time which means that system
-load may affect measurements. Benchmarks are bested compared when
+load may affect measurements. Benchmarks are best compared when
 all measurements are collected on the same environment under idle
 conditions. YMMV (today, it means "your measurements may vary")!
