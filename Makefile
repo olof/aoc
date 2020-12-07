@@ -8,10 +8,13 @@ targets = $(sort $(notdir $(patsubst %/,%,$(dir \
 problem = all
 timecmd-y = time
 timesh- = /bin/sh
+count- = 1
+count-y = 100
+output-y = >/dev/null
 timesh-y = /bin/bash
 
 export LANG=C
-export TIMEFORMAT=walltime: %Rs
+export TIMEFORMAT=%Rs
 
 today: $(today)
 all: $(targets)
@@ -21,6 +24,8 @@ dec%:
 		timecmd=$(timecmd-$(time)) \
 		sh=$(timesh-$(time)) \
 		day=$@ \
+		count=$(count-$(time)) \
+		output="$(output-$(time))" \
 		$(problem)
 
 .PHONY: all today dec%

@@ -12,16 +12,21 @@ make dec04
 ```
 
 Run only a specific problem of a day (1 or 2), with the problem
-make variable, e.g. `make dec04 problem=2`.
+make variable, e.g. `make dec04 problem=2`. By default, it will
+run the problem of the current day (in EST timezone).
 
 Enable timing by setting the time=y var, e.g. `make time=y`:
 
 ```
-dec31/1: 999
-walltime: 16.009s
-dec31/2: 999
-walltime: 27.010s
+dec31/1: 16.009s
+dec31/2: 27.010s
 ```
 
-Only one pass is timed so very noisy readings. YMMV (today, it
-means "your measurements may vary")!
+When running timing measurements, we run the solutions many times
+(default 100, but override by setting the count= make variable).
+This will get rid of some noise from the timings, but it does
+still include some overhead from things like forking processes.
+And by default, the output is "real" time which means that system
+load may affect measurements. Benchmarks are bested compared when
+all measurements are collected on the same environment under idle
+conditions. YMMV (today, it means "your measurements may vary")!
