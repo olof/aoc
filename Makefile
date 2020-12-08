@@ -10,6 +10,7 @@ timecmd-y = time
 timesh- = /bin/sh
 count- = 1
 count-y = 100
+count = $(count-$(time))
 output-y = >/dev/null
 timesh-y = /bin/bash
 
@@ -24,7 +25,7 @@ dec%:
 		timecmd=$(timecmd-$(time)) \
 		sh=$(timesh-$(time)) \
 		day=$@ \
-		count=$(count-$(time)) \
+		count=$(count) \
 		output="$(output-$(time))" \
 		$(problem)
 
