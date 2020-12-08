@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use 5.020;
-my $instr = [map { [split] } <>];
+my @instr = map { [split] } <>;
 my $state = 0;
 my $pc = 0;
 my %tbl = (
@@ -13,9 +13,9 @@ my %seen;
 my @hist;
 my $changed = 0;
 
-while ($pc < @$instr) {
-	my ($op, $arg) = @{$instr->[$pc]};
-	push @hist, [$pc, $state, $op, [@$instr]]
+while ($pc < @instr) {
+	my ($op, $arg) = @{$instr[$pc]};
+	push @hist, [$pc, $state, $op]
 		if not $changed and ($op eq 'jmp' or $op eq 'nop');
 	$seen{$pc} = $pc;
 	$tbl{$op}->($arg);
@@ -23,9 +23,9 @@ while ($pc < @$instr) {
 	next unless $seen{$pc};
 
 	$changed = 1;
-	($pc, $state, $op, $instr) = @{pop @hist};
+	($pc, $state, $op) = @{pop @hist};
 	$op = $op eq 'jmp' ? 'nop' : 'jmp';
-	$instr->[$pc]->[0] = $op;
+	$instr[$pc]->[0] = $op;
 }
 
 say $state;
