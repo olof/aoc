@@ -1,52 +1,44 @@
 #!/usr/bin/perl
 use 5.020;
-my @rows = map { chomp; [split //] } <>;
+use List::Util qw(sum);
+my $linewidth = 0;
+my @cells = map { {'#' => -1, '.' => 0, 'L' => 1}->{$_} }
+            map { chomp; $linewidth ||= length; split // }
+	    <>;
+my $rows = @cells / $linewidth;
 sub check {
 	my ($r, $c, $f) = @_;
-	while ($r >= 0 and $c >= 0 and $r < @rows and $c <= @{$rows[$r]}) {
-		if ($rows[$r]->[$c] ne '.') {
-			return $rows[$r]->[$c] eq '#';
-		}
-		($r, $c) = $f->($r, $c);
+	while (
+		($r, $c) = $f->($r, $c) and
+		$r >= 0 and $c >= 0 and $r < $rows and $c < $linewidth
+	) {
+		my $cell = $cells[$r * $linewidth + $c];
+		return $cell < 0 if $cell;
 	}
+	0;
 }
 
-sub neighbors {
-	my ($row, $col) = @_;
-	my $r;
-	$r += $_ for map { check($_->($row, $col), $_) }
-		sub { $_[0] - 1, $_[1] - 1 },
-		sub { $_[0] - 1, $_[1] + 0 },
-		sub { $_[0] - 1, $_[1] + 1 },
-		sub { $_[0] + 1, $_[1] - 1 },
-		sub { $_[0] + 1, $_[1] + 0 },
-		sub { $_[0] + 1, $_[1] + 1 },
-		sub { $_[0] + 0, $_[1] + 1 },
-		sub { $_[0] + 0, $_[1] - 1 };
-	$r
+my @funcs = (
+	sub { $_[0] - 1, $_[1] - 1 }, sub { $_[0] + 1, $_[1] + 1 },
+	sub { $_[0] - 1, $_[1] + 0 }, sub { $_[0] + 1, $_[1] - 1 },
+	sub { $_[0] - 1, $_[1] + 1 }, sub { $_[0] + 0, $_[1] - 1 },
+	sub { $_[0] + 1, $_[1] + 0 }, sub { $_[0] + 0, $_[1] + 1 },
+);
+
+sub neighbors { sum map { check(@_, $_) } @funcs }
+
+my @flips = 1;
+while (@flips) {
+	undef @flips;
+	for my $idx (keys @cells) {
+		my $row = int($idx / $linewidth);
+		my $col = $idx % $linewidth;
+		my $seat = $cells[$idx] or next;
+		my $n = neighbors($row, $col);
+		push @flips, $idx if $seat > 0 and not $n or
+				     $seat < 0 and $n >= 5
+	}
+	$cells[$_] = -$cells[$_] for @flips;
 }
 
-while (1) {
-	my @changes;
-	for my $row (keys @rows) {
-		for my $col (keys @{$rows[$row]}) {
-			my $seat = $rows[$row]->[$col];
-			next if $seat eq '.';
-			my $n = neighbors($row, $col);
-
-			if ($seat eq 'L' and not $n) {
-				push @changes, [$row, $col, '#', $n];
-			} elsif ($seat eq '#' and $n >= 5) {
-				push @changes, [$row, $col, 'L', $n]
-			}
-		}
-	}
-	last unless @changes;
-
-	for (@changes) {
-		my ($row, $col, $ch) = @$_;
-		$rows[$row]->[$col] = $ch;
-	}
-}
-
-say int grep { $_ eq '#' } map { @$_ } @rows;
+say int grep { $_ < 0 } @cells;
