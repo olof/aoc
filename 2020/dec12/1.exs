@@ -10,10 +10,10 @@ File.read("input")
 |> reduce({0, 2}, fn
   {"F", arg}, {d, face} when face <= 1 -> {d - arg, face}
   {"F", arg}, {d, face} when face >= 2 -> {d + arg, face}
-  {"R", arg}, {d, n} -> {d, mod(n+div(arg, 90), 4)}
-  {"L", arg}, {d, n} -> {d, mod(n-div(arg, 90), 4)}
-  {c, arg}, {d, face} when c in ["W", "N"] -> {d - arg, face}
-  {c, arg}, {d, face} when c in ["E", "S"] -> {d + arg, face}
+  {"R", arg}, {d, face} -> {d, mod(face+div(arg, 90), 4)}
+  {"L", arg}, {d, face} -> {d, mod(face-div(arg, 90), 4)}
+  {cmd, arg}, {d, face} when cmd in ["W", "N"] -> {d - arg, face}
+  {cmd, arg}, {d, face} when cmd in ["E", "S"] -> {d + arg, face}
 end)
 |> fn {distance, _} -> abs(distance) end.()
 |> IO.inspect
