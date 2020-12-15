@@ -1,0 +1,3 @@
+SCRIPT = perl <input 1.pl
+1: ARGS=2020
+2: ARGS=30000000
