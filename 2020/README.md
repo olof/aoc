@@ -29,3 +29,12 @@ about integer multiplication :).
 
 [abigail/dec05/gh]: https://github.com/Abigail/AdventOfCode2020/blob/master/Day_05/solution.pl
 [abigail/dec05/wp]: https://programmingblog702692439.wordpress.com/2020/12/05/advent-of-code-2020-day-5/
+
+### dec15
+
+The two subproblems of dec15 are the same, the only difference
+being the iteration count (problem 2 is much higher). Iterating
+my solution 2020 (problem 1) times is no biggie (~0.01s including
+perl process initialization), but running it 30000000 (problem 2)
+takes over 15s on my machine. Unhappy about that, but I guess I
+should be glad I solved it at all unlike `dec13/2`.
