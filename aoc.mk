@@ -1,4 +1,13 @@
-SCRIPT = perl <input $@.pl
+LANG-2020 = perl
+LANG-2021 = raku
+LANG := $(LANG-$(year))
+
+LANG_EXT-perl := pl
+LANG_EXT-raku := p6
+LANG_EXT := $(LANG_EXT-$(LANG))
+
+SCRIPT = $(LANG) <input $@.$(LANG_EXT)
+
 sh = /bin/sh
 all: 1 2
 count = 1

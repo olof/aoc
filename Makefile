@@ -24,6 +24,7 @@ dec%:
 	@make -s -f $(framework) -C $(year)/$@ \
 		timecmd=$(timecmd-$(time)) \
 		sh=$(timesh-$(time)) \
+		year=$(year) \
 		day=$@ \
 		count=$(count) \
 		output="$(output-$(time))" \
