@@ -1,6 +1,7 @@
 Dependencies:
 
 * `perl (>=5.20)`
+* `raku`
 * `bash` (because of limitations in `GNU time` -- only needed if
    you want to do timing measurements)
 * `make` (you can skip this and run the scripts directly)
