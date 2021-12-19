@@ -8,9 +8,9 @@ sub value(($row, $col)) { @in[$row][$col] }
 sub is-lowpoint($row, $col) {
   my $v = value(($row, $col));
   ([
-    ($row-1, $col-1), ($row-1, $col), ($row-1, $col+1),
+                      ($row-1, $col),
     ($row  , $col-1),                 ($row,   $col+1),
-    ($row+1, $col-1), ($row+1, $col), ($row+1, $col+1),
+                      ($row+1, $col),
   ].map(&value).grep(&defined).all > $v).Bool;
 }
 
