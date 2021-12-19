@@ -1,6 +1,4 @@
 #!/usr/bin/raku
-use Test;
-
 my %len-maps =
   2 => 1,
   3 => 7,
@@ -46,6 +44,7 @@ sub f ($v) {
 $*IN.lines.map(&f).sum.say;
 
 #`{
+use Test;
 
 sub t ($in, $out) {
   is f($in), $out, "f($in) is $out"
