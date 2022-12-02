@@ -1,10 +1,11 @@
-Dependencies:
+Dependencies, compared to an unspecified unix system baseline:
 
-* `perl (>=5.20)`
-* `raku`
+* `perl (>=5.20)` for most solutions 2020
+* `raku` for most solutions 2021
 * `bash` (because of limitations in `GNU time` -- only needed if
    you want to do timing measurements)
 * `make` (you can skip this and run the scripts directly)
+* `elixir` for some variant solutions (not picked up by default)
 
 ```
 make
@@ -29,5 +30,5 @@ This will get rid of some noise from the timings, but it does
 still include some overhead from things like forking processes.
 And by default, the output is "real" time which means that system
 load may affect measurements. Benchmarks are best compared when
-all measurements are collected on the same environment under idle
+all measurements are collected from the same environment under idle
 conditions. YMMV (today, it means "your measurements may vary")!
