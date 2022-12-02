@@ -1,1 +1,1 @@
-1: LANGUAGE=sh
+LANGUAGE=sh
