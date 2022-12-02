@@ -1,12 +1,12 @@
-LANG-2020 = perl
-LANG-2021 = raku
-LANG := $(LANG-$(year))
+LANGUAGE-2020 = perl
+LANGUAGE-2021 = raku
+LANGUAGE = $(LANGUAGE-$(year))
 
-LANG_EXT-perl := pl
-LANG_EXT-raku := p6
-LANG_EXT := $(LANG_EXT-$(LANG))
+LANGUAGE_EXT-perl := pl
+LANGUAGE_EXT-raku := p6
+LANGUAGE_EXT = $(LANGUAGE_EXT-$(LANGUAGE))
 
-SCRIPT = $(LANG) <input $@.$(LANG_EXT)
+SCRIPT = $(LANGUAGE) <input $@.$(LANGUAGE_EXT)
 
 sh = /bin/sh
 all: 1 2
