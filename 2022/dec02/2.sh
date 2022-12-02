@@ -10,5 +10,3 @@ perl -pe '
 	s/C Y/C Z/ or
 	s/C Z/C X/
 ' | sh 1.sh
-
-# too high: 16171
