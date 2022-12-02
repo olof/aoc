@@ -14,7 +14,7 @@ make dec04
 
 Run only a specific problem of a day (1 or 2), with the problem
 make variable, e.g. `make dec04 problem=2`. By default, it will
-run the problem of the current day (in EST timezone).
+run both problems of the current day (in EST timezone).
 
 Enable timing by setting the time=y var, e.g. `make time=y`:
 
