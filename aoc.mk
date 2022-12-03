@@ -11,7 +11,8 @@ LANGUAGE_EXT = $(LANGUAGE_EXT-$(LANGUAGE))
 problem ?= all
 PROBLEM_SOLUTION = $(problem).$(LANGUAGE_EXT)
 
-SCRIPT = $(LANGUAGE) <input $@.$(LANGUAGE_EXT)
+INPUT ?= input
+SCRIPT = $(LANGUAGE) <$(INPUT) $@.$(LANGUAGE_EXT)
 EDIT = $(EDITOR) $(PROBLEM_SOLUTION)
 
 sh = /bin/sh
