@@ -15,6 +15,8 @@ INPUT ?= input
 SCRIPT = $(LANGUAGE) <$(INPUT) $@.$(LANGUAGE_EXT)
 EDIT = $(EDITOR) $(PROBLEM_SOLUTION)
 
+day_num := $(subst dec,,$(subst dec0,,$(day)))
+
 sh = /bin/sh
 all: 1 2
 count = 1
@@ -22,11 +24,17 @@ loop = while [ $${n:=0} -lt $(count) ]; do
 loop_end = ; n=$$((n+1)); done
 
 -include aoc.mk
+-include $(TOPDIR)/env.mk
 
 1 2:
 	[ -e input ] || exit 0; \
 	echo -n "$(day)/$@: "; \
 	$(sh) -c '$(timecmd) ( $(loop) $(SCRIPT) $(output) $(ARGS) $(loop_end) )'
+
+init: input
+
+input:
+	curl -O 'https://adventofcode.com/$(year)/day/$(day_num)/input' -H 'Accept: text/plain' -H '@$(TOPDIR)/session.cookie'
 
 edit:
 	@[ "$(problem)" = all ] || $(EDIT)

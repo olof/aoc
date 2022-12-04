@@ -1,5 +1,9 @@
-topdir := $(PWD)
-framework := $(topdir)/aoc.mk
+export TOPDIR := $(PWD)
+export EDITOR ?= vim
+export LANG=C.utf-8
+export TIMEFORMAT=%Rs
+
+framework := $(TOPDIR)/aoc.mk
 today := dec$(shell TZ=EST date +%d)
 day ?= $(today)
 year = $(shell date +%Y)
@@ -15,9 +19,7 @@ count = $(count-$(time))
 output-y = >/dev/null
 timesh-y = /bin/bash
 
-export EDITOR ?= vim
-export LANG=C.utf-8
-export TIMEFORMAT=%Rs
+-include env.mk
 
 today: $(today)
 all: $(targets)
@@ -33,10 +35,16 @@ dec%:
 		output="$(output-$(time))" \
 		$(problem)
 
-init-day:
+init-day: $(year)/$(day)
+	@make -s -f $(framework) -C $(year)/$(day) \
+		year=$(year) \
+		day=$(day) \
+		init
+
+$(year)/$(day):
 	mkdir -p $(year)/$(day)
 
-edit:
+edit: init-day
 	@make -s -f $(framework) -C $(year)/$(day) \
 		year=$(year) \
 		day=$(day) \
