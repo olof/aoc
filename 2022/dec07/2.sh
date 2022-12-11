@@ -25,7 +25,6 @@ done | perl -n -e 'print while s/ (\/.*)\/.+$/ $1/; print s/ \/.+/ \//r' |
        uniq -f 1 --group=append |
        {
        	sum=0
-	ddir=
        	while read size dir; do
        		case $size in
        			"") echo $ddir $sum; sum=0 ;;
