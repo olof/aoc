@@ -43,4 +43,12 @@ edit:
 		exit 1; \
 	}
 
+language: language-$(problem)
+language-all:
+	echo LANGUAGE = $(LANGUAGE) >> aoc.mk
+language-1:
+	echo 1: LANGUAGE = $(LANGUAGE) >> aoc.mk
+language-2:
+	echo 1: LANGUAGE = $(LANGUAGE) >> aoc.mk
+
 .PHONY: all 1 2

@@ -41,6 +41,14 @@ init-day: $(year)/$(day)
 		day=$(day) \
 		init
 
+language: $(year)/$(day)
+	@make -s -f $(framework) -C $(year)/$(day) \
+		year=$(year) \
+		day=$(day) \
+		problem=$(problem) \
+		LANGUAGE=$(LANGUAGE) \
+		language
+
 $(year)/$(day):
 	mkdir -p $(year)/$(day)
 
