@@ -1,6 +1,7 @@
 LANGUAGE-2020 = perl
 LANGUAGE-2021 = raku
 LANGUAGE-2022 = sh
+LANGUAGE-2023 = sh
 LANGUAGE = $(LANGUAGE-$(year))
 
 LANGUAGE_EXT-perl := pl
