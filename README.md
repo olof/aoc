@@ -11,11 +11,15 @@ Dependencies, compared to an unspecified unix system baseline:
 make
 make all
 make dec04
+make dec04 year=2020
 ```
 
 Run only a specific problem of a day (1 or 2), with the problem
 make variable, e.g. `make dec04 problem=2`. By default, it will
-run both problems of the current day (in EST timezone).
+run both problems of the current day (in EST timezone). All the
+make targets are designed for running on a single year, by
+default the current year. This can be overriden using the year
+variable, as can be seen in the last example above.
 
 Enable timing by setting the time=y var, e.g. `make time=y`:
 
