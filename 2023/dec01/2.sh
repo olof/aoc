@@ -8,7 +8,7 @@ digitize() {
     -e s/seven/7/g -e s/eight/8/g -e s/nine/9/g
 }
 
-rdigitize() {
+ezitigid() {
   rev | sed -r \
     -e 's/(enin|thgie|neves|xis|evif|ruof|eerht|owt|eno)/[\1]/g' \
     -e s/eno/1/g -e s/owt/2/g -e s/eerht/3/g \
@@ -18,7 +18,7 @@ rdigitize() {
 
 buf=`cat`
 buf1=`echo "$buf" | digitize`
-buf2=`echo "$buf" | rdigitize`
+buf2=`echo "$buf" | ezitigid`
 echo $(( `
   echo "$buf1" | sed -re 's/^[^1-9]*([1-9]).*/+\10/'
   echo "$buf2" | sed -re 's/^[^1-9]*([1-9]).*/+\1/'
