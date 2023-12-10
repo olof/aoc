@@ -22,7 +22,7 @@ sed -re 's/(.)/\1 /g; s/\s*$//' | {
 			[ "$new_input" != "$input" ] || new_input=
 			input=$new_input
 
-			case $ch in [!0-9]) flush_partid esac
+			case $ch in [!0-9]) flush_partid ;; esac
 			case $ch in
 			        .) ;;
 				[0-9]) partid=$partid$ch
