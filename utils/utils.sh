@@ -1,6 +1,9 @@
 # Sourced shell utilities for aoc 2023
 # Generic things, instead of having to copy from previous solutions.
 
+NL='
+'
+
 count() {
 	echo $#
 }
