@@ -3,6 +3,7 @@
 
 NL='
 '
+TAB='	'
 
 count() {
 	echo $#
