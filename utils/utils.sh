@@ -31,6 +31,15 @@ _op_cmp() {
 min() { _op_cmp lt; }
 max() { _op_cmd gt; }
 
+zip() {
+	local a="$1" b="$2" delim="${3:-:}"
+	set -- $b
+	for x in $a; do
+		echo "$x$delim$1"
+		shift
+	done
+}
+
 join() {
 	local delim="$1"
 	shift
