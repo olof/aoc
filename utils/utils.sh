@@ -9,13 +9,15 @@ count() {
 	echo $#
 }
 
-sum() {
-	local n=0
+aritmap() {
+	local op="$1" n="${2:-0}"
 	while read line; do
-		n=$((n+line))
+		n=$((n $op line))
 	done
 	echo $n
 }
+
+sum() { aritmap '+'; }
 
 _op_cmp() {
 	x=
