@@ -18,6 +18,7 @@ aritmap() {
 }
 
 sum() { aritmap '+'; }
+mul() { aritmap '*' 1; }
 
 _op_cmp() {
 	x=
