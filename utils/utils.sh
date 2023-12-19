@@ -17,6 +17,17 @@ sum() {
 	echo $n
 }
 
+_op_cmp() {
+	x=
+	while read line; do
+		[ "${x:-$line}" -$1 $line ] || x=$line
+	done
+	echo $x
+}
+
+min() { _op_cmp lt; }
+max() { _op_cmd gt; }
+
 join() {
 	local delim="$1"
 	shift
