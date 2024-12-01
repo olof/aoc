@@ -2,11 +2,13 @@ LANGUAGE-2020 = perl
 LANGUAGE-2021 = raku
 LANGUAGE-2022 = sh
 LANGUAGE-2023 = sh
+LANGUAGE-2024 = python3
 LANGUAGE = $(LANGUAGE-$(year))
 
 LANGUAGE_EXT-perl := pl
 LANGUAGE_EXT-raku := p6
 LANGUAGE_EXT-sh := sh
+LANGUAGE_EXT-python3 := py
 LANGUAGE_EXT = $(LANGUAGE_EXT-$(LANGUAGE))
 
 problem ?= all
