@@ -2,6 +2,7 @@ export TOPDIR := $(PWD)
 export EDITOR ?= vim
 export LANG=C.utf-8
 export TIMEFORMAT=%Rs
+export PYTHONPATH = $(TOPDIR)/utils/python
 
 framework := $(TOPDIR)/aoc.mk
 today := dec$(shell TZ=EST date +%d)
