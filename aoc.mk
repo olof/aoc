@@ -5,10 +5,13 @@ LANGUAGE-2023 = sh
 LANGUAGE-2024 = python3
 LANGUAGE = $(LANGUAGE-$(year))
 
+EXEC-haskell = y
+
 LANGUAGE_EXT-perl := pl
 LANGUAGE_EXT-raku := p6
 LANGUAGE_EXT-sh := sh
 LANGUAGE_EXT-python3 := py
+LANGUAGE_EXT-haskell := hs.bin
 LANGUAGE_EXT = $(LANGUAGE_EXT-$(LANGUAGE))
 
 problem ?= all
@@ -33,6 +36,9 @@ loop_end = ; n=$$((n+1)); done
 
 -include aoc.mk
 -include $(TOPDIR)/env.mk
+
+%.hs.bin: %.hs
+	ghc -o $@ $<
 
 1: 1.$(LANGUAGE_EXT)
 2: 2.$(LANGUAGE_EXT)
