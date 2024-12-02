@@ -2,3 +2,5 @@ session.cookie
 20[0-9][0-9]/*/sample*
 *.sw?
 input*
+*.hi
+*.bin
