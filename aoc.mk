@@ -35,7 +35,7 @@ loop_end = ; n=$$((n+1)); done
 -include $(TOPDIR)/env.mk
 
 1 2:
-	[ -e input ] || exit 0; \
+	[ -e $(INPUT) ] || exit 0; \
 	echo -n "$(day)/$@: "; \
 	$(sh) -c '$(timecmd) ( $(loop) $(SCRIPT) $(output) $(ARGS) $(loop_end) )'
 
