@@ -16,7 +16,11 @@ PROBLEM_SOLUTION = $(problem).$(LANGUAGE_EXT)
 
 export PATH := $(TOPDIR)/utils:$(PATH)
 INPUT ?= input
+ifeq ($(EXEC-$(LANGUAGE)),y)
+SCRIPT = <$(INPUT) ./$@.$(LANGUAGE_EXT)
+else
 SCRIPT = $(LANGUAGE) <$(INPUT) $@.$(LANGUAGE_EXT)
+endif
 EDIT = $(EDITOR) $(PROBLEM_SOLUTION)
 
 day_num := $(subst dec,,$(subst dec0,,$(day)))
