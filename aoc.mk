@@ -34,6 +34,8 @@ loop_end = ; n=$$((n+1)); done
 -include aoc.mk
 -include $(TOPDIR)/env.mk
 
+1: 1.$(LANGUAGE_EXT)
+2: 2.$(LANGUAGE_EXT)
 1 2:
 	[ -e $(INPUT) ] || exit 0; \
 	echo -n "$(day)/$@: "; \
