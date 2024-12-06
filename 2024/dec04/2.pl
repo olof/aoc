@@ -7,7 +7,6 @@ for my $i (1..$#in-1) {
 	  map { "$in[$i-1]->[$_-1]A$in[$i+1]->[$_+1] " .
 	        "$in[$i-1]->[$_+1]A$in[$i+1]->[$_-1]" }
 	  grep { $in[$i]->[$_] eq 'A' }
-	  grep { say STDERR }
 	  1 .. $#{$in[$i]} - 1
 }
 say;
