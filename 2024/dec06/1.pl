@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 use 5.020;
-use Data::Dumper;
 
 $_ = do { $/ = undef; <> };
 my $width = length s/\n.*//sr;
