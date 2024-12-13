@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 use 5.020;
-use Data::Dumper;
 use List::Util qw(first sum);
 $" = $, = ", ";
 my @in = <> =~ /(\S)/g;
@@ -11,12 +10,6 @@ my @map = map {
 } keys @in;
 
 my @blocks = map { ($_->[0] ? \($_->[2]) : undef) x $_->[1] } @map;
-
-sub render {
-	local $,;
-	print $_ ? $$_ : '.' for @_;
-	print "\n";
-}
 
 my $done = 0;
 while (1) {
