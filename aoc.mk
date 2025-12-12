@@ -3,6 +3,7 @@ LANGUAGE-2021 = raku
 LANGUAGE-2022 = sh
 LANGUAGE-2023 = sh
 LANGUAGE-2024 = python3
+LANGUAGE-2025 = haskell
 LANGUAGE = $(LANGUAGE-$(year))
 
 EXEC-haskell = y
