@@ -7,6 +7,6 @@ main = do
   input <- readFile "input"
   print $ sum
         $ snd
-        $ foldl (step) (50, [0])
+        $ foldl (step) (50, [])
         $ map parse
         $ words input
