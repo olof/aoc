@@ -1,0 +1,22 @@
+#!/bin/sh
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# If we already have something generated for us, let's accept that.
+[ -z "$COMMIT_SOURCE" ] || exit 0
+
+git diff --name-only --cached | tr / ' ' | {
+	read year day file
+
+	# Verify that this is a single solution file
+	case $year in 20[0-9][0-9]) ;; *) exit 0 ;; esac
+	case $day in dec[0-9][0-9]) ;; *) exit 0 ;; esac
+	case $file in [12].*) ;; *) exit 0 ;; esac
+
+	(
+		printf "%s: %s: problem %s\n" "$year" "$day" "${file%%.*}"
+		cat $COMMIT_MSG_FILE
+	) > $COMMIT_MSG_FILE.new
+	# <here be the race conditions>
+	mv $COMMIT_MSG_FILE.new $COMMIT_MSG_FILE
+}
